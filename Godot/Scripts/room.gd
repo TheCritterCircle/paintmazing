@@ -1,6 +1,8 @@
 var openings = []
 var connections = []
 
+var tile_id = 0
+
 func add_opening(d):
 	openings.push_back(d)
 

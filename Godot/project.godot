@@ -19,6 +19,15 @@ config/name="Paintmazing"
 run/main_scene="res://Scenes/Scene.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=30
+window/size/height=30
+window/size/resizable=false
+window/size/test_width=1000
+window/size/test_height=1000
+window/stretch/mode="2d"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
