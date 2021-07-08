@@ -19,4 +19,5 @@ func create_rooms():
 		for y in range(self.width):
 			var coordinates = Vector2(x, y)
 			self.rooms[coordinates] = Room.new()
-			self.rooms[coordinates].tile_id = 0
+			randomize()
+			self.rooms[coordinates].tile_id = floor(rand_range(1, 10))
