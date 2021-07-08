@@ -19,5 +19,11 @@ func create_rooms():
 		for y in range(self.width):
 			var coordinates = Vector2(x, y)
 			self.rooms[coordinates] = Room.new()
-			randomize()
-			self.rooms[coordinates].tile_id = floor(rand_range(1, 10))
+			self.rooms[coordinates].location = coordinates
+	#search_for_neighbours()
+
+func search_for_neighbours():
+	for x in range(self.width):
+		for y in range(self.width):
+			#if Vector2(x - 1, y) == rooms.size() - 1:
+			pass

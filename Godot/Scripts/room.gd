@@ -1,6 +1,7 @@
 var openings = []
 var connections = []
 
+var location = Vector2()
 var tile_id = 0
 
 func add_opening(d):
