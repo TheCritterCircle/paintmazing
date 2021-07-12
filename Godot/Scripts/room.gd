@@ -1,14 +1,13 @@
-var openings = []
-var connections = []
+var openings = 0
+var neighbours = []
+var walls = []
 
 var location = Vector2()
-var tile_id = 0
 
 func add_opening(d):
-	openings.push_back(d)
+	openings =+ d[1]
+	walls.remove(walls.find(d))
 
-func add_connection(d):
-	connections.push_back(d)
-
-func is_open(d):
-	return openings.has(d)
+func add_neighbour(d):
+	neighbours.push_back(d)
+	walls.push_back(d)

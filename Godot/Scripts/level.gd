@@ -15,5 +15,5 @@ func render_tiles(maze):
 	
 	for x in range(maze.height):
 		for y in range(maze.width):
-			var tile = maze.rooms[Vector2(x, y)].tile_id
+			var tile = maze.rooms[Vector2(x, y)].openings
 			$TileMap.set_cell(x, y, tile)
