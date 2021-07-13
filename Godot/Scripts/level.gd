@@ -3,7 +3,7 @@ extends Node2D
 var Maze = load("res://Scripts/maze.gd")
 
 func _ready():
-	var maze = Maze.new(5, 5)
+	var maze = Maze.new(12, 12)
 	render_tiles(maze)
 
 func _process(_delta):
