@@ -21,10 +21,7 @@ class MazeGenerator {
     this.width = width;
     this.height = height;
     this.tiles = new Map();
-    let pivot = this.tiles.get([
-      Math.floor(this.width / 2),
-      Math.floor(this.height / 2)
-    ]);
+
     for (let x in range(1, width)) {
       for (let y in range(1, height)) {
 
@@ -41,8 +38,10 @@ class MazeGenerator {
       }
     }
     console.log(this.tiles)
-    
-    let pivot = this.tiles.get([3,3])
+    let pivot = this.tiles.get([
+      Math.floor(this.width / 2),
+      Math.floor(this.height / 2)
+    ]);
     console.log(pivot)
     let queue = new Array()
 
