@@ -1,4 +1,9 @@
-const directions = ["UP", "RIGHT", "DOWN", "LEFT"]
+const DIRECTIONS = new Array([
+  [0, -1], // up
+  [1, 0], // right
+  [0, 1], // down
+  [-1, 0] // left
+])
 
 class Tile {
   constructor(x, y) {
@@ -16,34 +21,45 @@ class MazeGenerator {
     this.width = width;
     this.height = height;
     this.tiles = new Map();
-
+    let pivot = this.tiles.get([
+      Math.floor(this.width / 2),
+      Math.floor(this.height / 2)
+    ]);
     for (let x in range(1, width)) {
       for (let y in range(1, height)) {
-        let pos = [x, y].map(Number)
-        console.log(pos)
-        this.tiles.set(pos, new Tile(x, y))
 
-        let tile = this.tiles.get(pos)
-        console.log(this.tiles)
-        console.log(tile)
+        let pos = [x, y].map(Number)
+
+        let tile = new Tile(x, y)
 
         if (x != 0) tile.neighbours.add([pos[0] - 1, pos[1]]);
         if (x != width - 1) tile.neighbours.add([pos[0] + 1, pos[1]]);
         if (y != 0) tile.neighbours.add([pos[0], pos[1] - 1]);
         if (y != height - 1) tile.neighbours.add([pos[0], pos[1] + 1]);
+      
+        this.tiles.set(pos, tile)
       }
     }
+    console.log(this.tiles)
     
-    let pivot = [
-      Math.floor(width / 2),
-      Math.floor(height / 2)
-    ];
+    let pivot = this.tiles.get([3,3])
+    console.log(pivot)
+    let queue = new Array()
 
+    queue.push(...pivot.neighbours)
 
+  }
+
+  connectTiles(tile, target) {
+
+  }
+
+  getTile([x, y]) {
+    return this.tiles.get([x, y].map(Number))
   }
 }
 
-let maze = new MazeGenerator(3, 3)
+let maze = new MazeGenerator(6, 6)
 console.log(maze.tiles)
 
 function range(start, end) {
