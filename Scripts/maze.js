@@ -60,7 +60,6 @@ class MazeGenerator {
     while (connectQueue.length > 0) {
 
       let currentTile = this.getTile(connectQueue[0]);
-      console.log(currentTile.pos)
       //currentTile.isActive = true;
       connectQueue.shift();
       let connectedTiles = [];
@@ -148,7 +147,6 @@ function generateMaze() {
   const y = Number(document.getElementById("mazeYInput").value);
   const errorMessage = document.getElementById("errorMessage");
   errorMessage.innerHTML = ''
-  console.log(x)
   if (x !== Math.abs(x) || x !== Math.floor(x) || x === 0) return errorMessage.innerHTML = 'Numbers may not be negative, zero, or have decimals.';
   if (y !== Math.abs(y) || y !== Math.floor(y) || y === 0) return errorMessage.innerHTML = 'Numbers may not be negative, zero, or have decimals.';
   renderMaze(new MazeGenerator(x, y))
