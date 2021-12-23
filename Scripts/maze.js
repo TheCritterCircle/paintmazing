@@ -1,17 +1,16 @@
-const DIRECTIONS = new Array([
-  [0, -1], // up
-  [1, 0], // right
-  [0, 1], // down
-  [-1, 0] // left
-])
+// Tile directions
+const UP = [0, -1];
+const RIGHT = [1, 0];
+const DOWN = [0, 1];
+const LEFT = [-1, 0];
 
 class Tile {
   constructor(x, y) {
     this.x = x
     this.y = y
 
-    this.paths = new Set();
-    this.neighbours = new Set();
+    this.paths = [];
+    this.neighbours = [];
   }
 }
 
@@ -20,32 +19,32 @@ class MazeGenerator {
 
     this.width = width;
     this.height = height;
-    this.tiles = new Map();
+    this.tiles = [];
 
-    for (let x in range(1, width)) {
-      for (let y in range(1, height)) {
+    for (let y in range(1, width)) {
 
-        let pos = [x, y].map(Number)
+      this.tiles.push([])
+
+      for (let x in range(1, height)) {
 
         let tile = new Tile(x, y)
-
-        if (x != 0) tile.neighbours.add([pos[0] - 1, pos[1]]);
-        if (x != width - 1) tile.neighbours.add([pos[0] + 1, pos[1]]);
-        if (y != 0) tile.neighbours.add([pos[0], pos[1] - 1]);
-        if (y != height - 1) tile.neighbours.add([pos[0], pos[1] + 1]);
+        if (y != 0) tile.neighbours.push(sumArrays([x, y].map(Number), UP)); // if there is a tile above
+        if (x != width + 1) tile.neighbours.push(sumArrays([x, y].map(Number), RIGHT)); // if there is a tile to the right
+        if (y != height - 1) tile.neighbours.push(sumArrays([x, y].map(Number), DOWN)); // if there is a tile below
+        if (x != 0) tile.neighbours.push(sumArrays([x, y].map(Number), LEFT)); // if there is a tile to the left
       
-        this.tiles.set(pos, tile)
+        this.tiles[y][x] = tile
       }
     }
-    console.log(this.tiles)
-    let pivot = this.tiles.get([
-      Math.floor(this.width / 2),
-      Math.floor(this.height / 2)
-    ]);
-    console.log(pivot)
-    let queue = new Array()
+    const pivotX = Math.floor(this.width / 2) - 1
+    const pivotY = Math.floor(this.height / 2) - 1
+    let pivot = this.tiles[pivotY][pivotX]
 
-    queue.push(...pivot.neighbours)
+    let queue = []
+
+    queue.push([...pivot.neighbours])
+
+    console.log(queue)
 
   }
 
@@ -53,7 +52,7 @@ class MazeGenerator {
 
   }
 
-  getTile([x, y]) {
+  getTile(x, y) {
     return this.tiles.get([x, y].map(Number))
   }
 }
@@ -63,4 +62,16 @@ console.log(maze.tiles)
 
 function range(start, end) {
   return (new Array(end - start + 1)).fill(undefined).map((_, i) => i + start);
+}
+
+function sumArrays(arr1, arr2) {
+  return arr1.map((num, idx) => {
+    return num + arr2[idx];
+  })
+}
+
+function subtractArrays(arr1, arr2) {
+  return arr1.map((num, idx) => {
+    return num - arr2[idx]
+  })
 }
