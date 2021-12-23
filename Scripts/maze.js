@@ -25,11 +25,11 @@ class MazeGenerator {
     this.tiles = [];
 
     // Generating tiles and finding neighbours
-    for (let y in range(1, width)) {
+    for (let y in range(1, height)) {
 
       this.tiles.push([]);
 
-      for (let x in range(1, height)) {
+      for (let x in range(1, width)) {
 
         let tile = new Tile(x, y);
         if (y != 0) tile.neighbours.push(sumArrays(tile.pos, UP)); // if there is a tile above
@@ -42,8 +42,8 @@ class MazeGenerator {
     };
 
     // Locating pivot (middle tile)
-    const pivotX = Math.floor(this.width / 2) - 1;
-    const pivotY = Math.floor(this.height / 2) - 1;
+    const pivotX = Math.ceil(this.width / 2) - 1;
+    const pivotY = Math.ceil(this.height / 2) - 1;
     let pivot = this.tiles[pivotY][pivotX];
 
     let connectQueue = [];
