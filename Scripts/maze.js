@@ -4,6 +4,8 @@ const RIGHT = [1, 0];
 const DOWN = [0, 1];
 const LEFT = [-1, 0];
 
+const ctx = document.getElementById('gameCanvas').getContext('2d');
+
 class Tile {
   constructor(x, y) {
     this.x = x;
@@ -58,9 +60,9 @@ class MazeGenerator {
     while (connectQueue.length > 0) {
 
       let currentTile = this.getTile(connectQueue[0]);
-      currentTile.isActive = true;
+      console.log(currentTile.pos)
+      //currentTile.isActive = true;
       connectQueue.shift();
-
       let connectedTiles = [];
       currentTile.neighbours.forEach(t => {
         let u = this.getTile(t);
@@ -73,6 +75,9 @@ class MazeGenerator {
 
   connectTiles(tile, target) {
     if (tile.connections.indexOf(target) !== -1) return;
+    if (tile.isActive) return
+    tile.isActive = true
+    target.isActive = true
     // Add connections
     tile.connections.push(target);
     target.connections.push(tile);
@@ -85,9 +90,6 @@ class MazeGenerator {
     return this.tiles[y][x];
   };
 };
-
-let maze = new MazeGenerator(6, 6);
-renderMaze(maze);
 
 function range(start, end) {
   return (new Array(end - start + 1)).fill(undefined).map((_, i) => i + start);
@@ -117,7 +119,6 @@ function arraysEqual(a, b) {
 }
 
 function draw(file, x, y) {
-  const ctx = document.getElementById('gameCanvas').getContext('2d');
   const img = new Image();
   img.onload = () => {
     ctx.drawImage(img, x, y);
@@ -126,6 +127,7 @@ function draw(file, x, y) {
 }
 
 function renderMaze(maze) {
+  ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
   let remainingTiles = maze.tiles;
   for (y in remainingTiles) {
     for (x in remainingTiles[y]) {
@@ -139,4 +141,15 @@ function renderMaze(maze) {
       draw(img, x * 30, y * 30);
     }
   }
+}
+
+function generateMaze() {
+  const x = Number(document.getElementById("mazeXInput").value);
+  const y = Number(document.getElementById("mazeYInput").value);
+  const errorMessage = document.getElementById("errorMessage");
+  errorMessage.innerHTML = ''
+  console.log(x)
+  if (x !== Math.abs(x) || x !== Math.floor(x) || x === 0) return errorMessage.innerHTML = 'Numbers may not be negative, zero, or have decimals.';
+  if (y !== Math.abs(y) || y !== Math.floor(y) || y === 0) return errorMessage.innerHTML = 'Numbers may not be negative, zero, or have decimals.';
+  renderMaze(new MazeGenerator(x, y))
 }
