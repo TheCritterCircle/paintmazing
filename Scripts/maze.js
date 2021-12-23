@@ -66,7 +66,7 @@ class MazeGenerator {
         let u = this.getTile(t);
         u.isActive ? connectedTiles.push(u) : connectQueue.push(t);
       });
-      let randomTileNumber = Math.floor(Math.random(0, connectedTiles.length - 1));
+      let randomTileNumber = Math.floor(Math.random() * connectedTiles.length);
       this.connectTiles(currentTile, connectedTiles[randomTileNumber]);
     };
   };
