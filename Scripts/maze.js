@@ -44,8 +44,8 @@ class MazeGenerator {
     };
 
     // Locating pivot (middle tile)
-    const pivotX = Math.ceil(this.width / 2) - 1;
-    const pivotY = Math.ceil(this.height / 2) - 1;
+    const pivotX = Math.floor(this.width / 2);
+    const pivotY = Math.floor(this.height / 2);
     let pivot = this.tiles[pivotY][pivotX];
 
     let connectQueue = [];
