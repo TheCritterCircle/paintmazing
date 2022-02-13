@@ -1,2 +1,2 @@
-let maze = new Maze(15, 15);
+let maze = new Maze(15, 9);
 renderMaze(maze);

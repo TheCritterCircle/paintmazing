@@ -73,6 +73,9 @@ class Maze {
     while (queue.length > 0) {
       let randomIndex = Math.floor(Math.random() * queue.length)
 
+      let extraConnection = Math.floor(Math.random() * 8) === 0
+      let possibleExtras = []
+
       let tile = queue[randomIndex];
       let options = [];
   
@@ -83,15 +86,19 @@ class Maze {
         if (neighbour.isPathed) options.push(neighbour) // if the neighbour is pathed to a tile already, add it to the possible path list (options)
         else if (queue.indexOf(neighbour) === -1) queue.push(neighbour) // if it's not pathed, check if the neighbour is already in the queue and if not, add it
   
+        if (extraConnection) possibleExtras.push(neighbour)
+
       })
       let randomOption = Math.floor(Math.random() * options.length);
       this.pathTiles(tile, options[randomOption])
-  
+
+      if (possibleExtras.length > 0) {
+        let randomExtra = Math.floor(Math.random() * possibleExtras.length);
+        this.pathTiles(tile, possibleExtras[randomExtra])
+      }
+
       tile.isPathed = true
       queue.splice(randomIndex, 1);
     }
-
-    // add extra paths
-    //for (let )
   }
 }
