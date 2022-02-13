@@ -88,7 +88,7 @@ class Maze {
       this.pathTiles(tile, options[randomOption])
   
       tile.isPathed = true
-      queue.shift();
+      queue.splice(randomIndex, 1);
     }
 
     // add extra paths
