@@ -49,7 +49,6 @@ function renderMaze(maze) {
   for (y in maze.tiles) {
     for (x in maze.tiles[y]) {
       let n = 0;
-
       if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, UP)) !== -1) n += 1;
       if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, RIGHT)) !== -1) n += 2;
       if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, DOWN)) !== -1) n += 4;

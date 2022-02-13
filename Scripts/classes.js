@@ -71,7 +71,9 @@ class Maze {
 
     // run the queue
     while (queue.length > 0) {
-      let tile = queue[0];
+      let randomIndex = Math.floor(Math.random() * queue.length)
+
+      let tile = queue[randomIndex];
       let options = [];
   
       tile.neighbours.forEach(nPos => {
@@ -88,5 +90,8 @@ class Maze {
       tile.isPathed = true
       queue.shift();
     }
+
+    // add extra paths
+    //for (let )
   }
 }
