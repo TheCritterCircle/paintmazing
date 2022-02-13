@@ -73,7 +73,7 @@ class Maze {
     while (queue.length > 0) {
       let randomIndex = Math.floor(Math.random() * queue.length)
 
-      let extraConnection = Math.floor(Math.random() * 8) === 0
+      let extraConnection = Math.floor(Math.random() * 6) === 0
       let possibleExtras = []
 
       let tile = queue[randomIndex];
