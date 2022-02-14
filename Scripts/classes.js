@@ -7,8 +7,8 @@ class Tile {
     this.neighbours = [];
     this.paths = [];
     this.isPathed = false;
-  };
-};
+  }
+}
 
 class Maze {
   constructor(width, height) {
@@ -73,7 +73,7 @@ class Maze {
     while (queue.length > 0) {
       let randomIndex = Math.floor(Math.random() * queue.length)
 
-      let extraConnection = Math.floor(Math.random() * 6) === 0
+      let extraConnection = Math.floor(Math.random() * 5) === 0
       let possibleExtras = []
 
       let tile = queue[randomIndex];
@@ -100,5 +100,26 @@ class Maze {
       tile.isPathed = true
       queue.splice(randomIndex, 1);
     }
+  }
+}
+
+class Sprite {
+  constructor(x, y, img, width, height) {
+    this.x = x;
+    this.y = y;
+    this.width = width || img.width;
+    this.height = height || img.height;
+
+    this.img = img;
+  }
+
+  draw() {
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+  }
+}
+
+class Ball extends Sprite {
+  constructor(x, y, img, width, height, speed) {
+    // ...
   }
 }

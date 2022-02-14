@@ -1,3 +1,9 @@
+function createImage(src) {
+  let img = new Image();
+  img.src = src;
+  return img;
+}
+
 function range(start, end) {
   return (new Array(end - start + 1)).fill(undefined).map((_, i) => i + start);
 };
