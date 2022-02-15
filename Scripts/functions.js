@@ -1,9 +1,10 @@
-function createImage(src) {
+function createImage(src, width, height) {
   let img = new Image();
   img.src = src;
-  /* img.onload = () => {
-    return img;
-  } */
+  img.width = width;
+  img.height = height;
+  console.log(img)
+  return img
 }
 
 function range(start, end) {
@@ -33,12 +34,10 @@ function arraysEqual(a, b) {
   return true;
 }
 
-function draw(file, x, y) {
-  const img = new Image();
+function draw(img, x, y) {
   img.onload = () => {
     ctx.drawImage(img, x, y);
   };
-  img.src = file;
 }
 
 function findNeighbours(tile, maze) {
@@ -62,9 +61,7 @@ function renderMaze(maze) {
       if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, TILE_DOWN)) !== -1) n += 4;
       if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, TILE_LEFT)) !== -1) n += 8;
 
-      console.log(TILE_IMG(n))
-      console.log(n)
-      ctx.drawImage(TILE_IMG(n), x * TILE_DIM[0], y * TILE_DIM[1]);
+      draw(TILE_IMG(n), x * TILE_DIM[0], y * TILE_DIM[1]);
     }
   }
 }
