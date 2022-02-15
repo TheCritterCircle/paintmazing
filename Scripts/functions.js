@@ -1,7 +1,9 @@
 function createImage(src) {
   let img = new Image();
   img.src = src;
-  return img;
+  /* img.onload = () => {
+    return img;
+  } */
 }
 
 function range(start, end) {
@@ -60,6 +62,8 @@ function renderMaze(maze) {
       if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, TILE_DOWN)) !== -1) n += 4;
       if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, TILE_LEFT)) !== -1) n += 8;
 
+      console.log(TILE_IMG(n))
+      console.log(n)
       ctx.drawImage(TILE_IMG(n), x * TILE_DIM[0], y * TILE_DIM[1]);
     }
   }

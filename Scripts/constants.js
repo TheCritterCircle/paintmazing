@@ -8,5 +8,6 @@ const ctx = document.getElementById('gameCanvas').getContext('2d');
 
 const TILE_DIM = [30, 30]
 const TILE_IMG = (n) => { 
-  return createImage("Sprites/Tiles/"+  n.toString() + ".png")
+  console.log(createImage("./Sprites/Tiles/"+  n.toString() + ".png"))
+  return createImage("./Sprites/Tiles/"+  n.toString() + ".png")
 };
