@@ -24,10 +24,10 @@ class Maze {
   }
 
   findNeighbours(tile) {
-    if (tile.y != 0) tile.neighbours.push(sumArrays(tile.pos, UP));
-    if (tile.x != this.width - 1) tile.neighbours.push(sumArrays(tile.pos, RIGHT)); 
-    if (tile.y != this.height - 1) tile.neighbours.push(sumArrays(tile.pos, DOWN)); 
-    if (tile.x != 0) tile.neighbours.push(sumArrays(tile.pos, LEFT));
+    if (tile.y != 0) tile.neighbours.push(sumArrays(tile.pos, TILE_UP));
+    if (tile.x != this.width - 1) tile.neighbours.push(sumArrays(tile.pos, TILE_RIGHT)); 
+    if (tile.y != this.height - 1) tile.neighbours.push(sumArrays(tile.pos, TILE_DOWN)); 
+    if (tile.x != 0) tile.neighbours.push(sumArrays(tile.pos, TILE_LEFT));
     return tile;
   }
 

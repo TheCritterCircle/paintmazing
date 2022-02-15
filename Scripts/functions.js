@@ -55,14 +55,12 @@ function renderMaze(maze) {
   for (y in maze.tiles) {
     for (x in maze.tiles[y]) {
       let n = 0;
-      if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, UP)) !== -1) n += 1;
-      if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, RIGHT)) !== -1) n += 2;
-      if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, DOWN)) !== -1) n += 4;
-      if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, LEFT)) !== -1) n += 8;
+      if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, TILE_UP)) !== -1) n += 1;
+      if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, TILE_RIGHT)) !== -1) n += 2;
+      if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, TILE_DOWN)) !== -1) n += 4;
+      if (maze.tiles[y][x].paths.findIndex(a => arraysEqual(a, TILE_LEFT)) !== -1) n += 8;
 
-      const img = "./Sprites/Tiles/" + n.toString() + ".png";
-
-      draw(img, x * 30, y * 30);
+      ctx.drawImage(TILE_IMG(n), x * TILE_DIM[0], y * TILE_DIM[1]);
     }
   }
 }
