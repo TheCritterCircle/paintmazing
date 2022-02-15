@@ -1,8 +1,6 @@
-function createImage(src, width, height) {
+function createImage(src) {
   let img = new Image();
   img.src = src;
-  img.width = width;
-  img.height = height;
   return img
 }
 
@@ -34,9 +32,13 @@ function arraysEqual(a, b) {
 }
 
 function draw(img, x, y) {
-  img.onload = () => {
-    ctx.drawImage(img, x, y);
-  };
+  if (img.complete) {
+    ctx.drawImage(img, x, y)
+  } else {
+    img.onload = () => {
+      ctx.drawImage(img, x, y);
+    };
+  }
 }
 
 function findNeighbours(tile, maze) {
