@@ -3,7 +3,6 @@ function createImage(src, width, height) {
   img.src = src;
   img.width = width;
   img.height = height;
-  console.log(img)
   return img
 }
 
