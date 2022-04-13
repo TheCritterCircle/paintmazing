@@ -7,6 +7,8 @@ class Tile {
     this.neighbours = [];
     this.paths = [];
     this.isPathed = false;
+
+    this.isSelected = false;
   }
 }
 
@@ -120,6 +122,8 @@ class Sprite {
 
 class Ball extends Sprite {
   constructor(x, y, img, width, height, speed) {
-    // ...
+    super(x, y, img, width, height)
+    
+    this.speed = speed;
   }
 }
