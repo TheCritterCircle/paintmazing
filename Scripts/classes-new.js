@@ -26,10 +26,6 @@ class MovingObject extends GameObject {
     y: 0
   }
 
-  constructor(x, y, sprite) {
-    super(x, y, sprite)
-  }
-
   modifyVelocity(v) {
     this.velocity.x += v.x
     this.velocity.y += v.y
@@ -37,7 +33,4 @@ class MovingObject extends GameObject {
 }
 
 class Ball extends MovingObject {
-  contructor(x, y, sprite) {
-    super(x, y, sprite)
-  }
 }
