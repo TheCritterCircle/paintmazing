@@ -3,18 +3,13 @@
 //const TILE_DOWN = [0, 1];
 //const TILE_LEFT = [-1, 0];
 
-const canvas = document.getElementById("gameCanvas");
+const canvas = document.getElementById('gameCanvas');
 const ctx = document.getElementById('gameCanvas').getContext('2d');
-
-const DEFAULT_POSITION = {
-  x: 0,
-  y: 0
-}
 
 const TILE_DIMENSIONS = {
   width: 30,
   height: 30
-}
+};
 //const TILE_IMG = (n) => { 
 //  return createImage("./Sprites/Tiles/"+  n.toString() + ".png")
 //};

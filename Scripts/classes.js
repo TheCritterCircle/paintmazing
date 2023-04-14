@@ -1,66 +1,45 @@
-class Sprite {
-  position = DEFAULT_POSITION
+const UP = 0;
+const RIGHT = 1;
+const DOWN = 2;
+const LEFT = 3;
 
-  constructor(image, position) {
-    this.image = image
-
-    this.position.x = position.x ?? DEFAULT_POSITION.x
-    this.position.y = position.y ?? DEFAULT_POSITION.y
-  }
-
-  rescale(scale) {
-    this.image.width = scale.x
-    this.image.height = scale.y
-  }
-
-  changeImage(image, keepScale) {
-    if (keepScale) {
-      image.width = this.image.width
-      image.height = this.image.height
-    }
-
-    this.img = image
-  }
-
-  draw() {
-    ctx.drawImage(this.img, this.position.x, this.position.y, this.scale.width, this.scale.height)
-  }
-}
-
-class GameObject {
-  position = DEFAULT_POSITION
-  constructor(position, sprite) {
-    this.position.x = position.x;
-    this.position.y = position.y;
-    this.sprite = sprite
-  }
-}
-
-class MovingObject extends GameObject {
-  velocity = {
-    x: 0,
-    y: 0
-  }
-
-  modifyVelocity(vel) {
-    this.velocity.x += vel.x
-    this.velocity.y += vel.y
-  }
+function getDirection(pos) {
+  if (pos[0] == 0 && pos[1] == -1) return UP;
+  else if (pos[0] == 1 && pos[1] == 0) return RIGHT;
+  else if (pos[0] == 0 && pos[1] == 1) return DOWN;
+  else if (pos[0] == -1 && pos[1] == 0) return LEFT;
+  console.error('Incorrect direction given:', pos);
 }
 
 class Tile {
-  position = DEFAULT_POSITION
+  openSides = [false, false, false, false];
 
-  sprite = null
+  openSide(direction) {
+    this.openSides[direction] = true;
+  }
+}
 
-  constructor({x, y}) {
-    this.position.x = x
-    this.position.y = y
+class Maze {
+  tiles = [];
+
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+
+    this.generateTiles();
   }
 
-  applySprite(sprite) {
-    sprite.scale(TILE_DIMENSIONS)
+  generateTiles() {
+    for (let x = 0; x < this.width - 1; x++) {
+      this.tiles.push([]);
+      for (let y = 0; y < this.height - 1; y++) {
+        this.tiles[x].push(new Tile()); 
+      }
+    }
+  }
 
-    this.sprite = sprite
+  connectTiles(aX, aY, bX, bY) {
+    this.tiles[aX][aY].openSide(getDirection([bX - aX, bY - aY]));
+    this.tiles[bX][bY].openSide(getDirection([aX - bX, aY - bY]));
   }
 }

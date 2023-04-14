@@ -1,24 +1,24 @@
-function createImage(src) {
+/*function createImage(src) {
   let img = new Image();
   img.src = src;
   return img
-}
+}*/
 
 function range(start, end) {
   return (new Array(end - start + 1)).fill(undefined).map((_, i) => i + start);
-};
+}
 
 function sumArrays(arr1, arr2) {
   return arr1.map((num, idx) => {
     return num + arr2[idx];
   });
-};
+}
 
 function subtractArrays(arr1, arr2) {
   return arr1.map((num, idx) => {
     return num - arr2[idx];
   });
-};
+}
 
 function arraysEqual(a, b) {
   if (a === b) return true;
@@ -31,7 +31,24 @@ function arraysEqual(a, b) {
   return true;
 }
 
-function draw(img, x, y) {
+function generateTileGrid(scale) {
+  let tileGrid = [];
+
+  for (let x in range(1, scale.width)) {
+    tileGrid[x] = [];
+
+    for (let y in range(1, scale.height)) {
+      console.log(x);
+      console.log(y);
+      console.log(tileGrid[x][y]);
+      tileGrid[x][y] = new Tile({x, y});
+    }
+  }
+
+  return tileGrid;
+}
+
+/*function draw(img, x, y) {
   if (img.complete) {
     ctx.drawImage(img, x, y)
   } else {
@@ -65,4 +82,4 @@ function renderMaze(maze) {
       draw(TILE_IMG(n), x * TILE_DIM[0], y * TILE_DIM[1]);
     }
   }
-}
+}*/

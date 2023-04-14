@@ -6,16 +6,25 @@
 </head>
 
 <body>
-  <canvas id="gameCanvas" width="720" height="480"></canvas>
-  <input id="mazeXInput" type="number" placeholder="x">
-  <input id="mazeYInput" type="number" placeholder="y">
-  <button onclick="generateMaze()">Generate!</button>
-  <label id="errorMessage"></label>
-
-  <script src="./Scripts/constants.js"></script>
-  <script src="./Scripts/functions.js"></script>
+  <canvas id="gameCanvas" width="360" height="800"></canvas>
+  <div id="testSettings" class="centre">
+    <div id="generationInput" class="settingField">
+      <input id="mazeXInput" type="number" placeholder="w">
+      <input id="mazeYInput" type="number" placeholder="h">
+      <button onclick="generateMaze()">Generate</button>
+    </div>
+    <div id="generationType" class="settingField">
+      <div class="genTypeChoice">
+        <input id="genTypeNew" type="radio" name="genType">
+        <label for="genTypeNew">New</label>
+      </div>
+      <div class="genTypeChoice">
+        <input id="genTypeOld" type="radio" name="genType">
+        <label for="genTypeOld">Old</label>
+      </div>
+    </div>
+    <label id="errorMessage"></label>
+  </div>
   <script src="./Scripts/classes.js"></script>
-  <script src="./Scripts/objects.js"></script>
-  
   <script src="./Scripts/game.js"></script>
 </body>
