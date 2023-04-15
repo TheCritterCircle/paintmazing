@@ -97,4 +97,16 @@ class Maze {
 
     return neighbours;
   }
+
+  finishMaze() {
+    for (let row of this.tiles) {
+      for (let tile of row) {
+        let tileNeighbours = this.getNeighbours(tile);
+        let randomNeighbourA = tileNeighbours[Math.floor(Math.random() * tileNeighbours.length)];
+        let randomNeighbourB = tileNeighbours[Math.floor(Math.random() * tileNeighbours.length)];
+        this.connectTiles(tile, randomNeighbourA);
+        this.connectTiles(tile, randomNeighbourB);
+      }
+    }
+  }
 }
