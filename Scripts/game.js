@@ -1,3 +1,5 @@
-let gameMaze = generateMaze(10, 10);
+let gameMaze = generateMaze(8, 8);
+gameMaze.generatePath();
+gameMaze.generatePath();
 gameMaze.generatePath();
 drawMaze(gameMaze);

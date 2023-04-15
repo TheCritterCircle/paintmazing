@@ -19,6 +19,7 @@ class Tile {
 
 class Maze {
   tiles = [];
+  connectedTiles = [];
 
   constructor(width, height) {
     this.width = width;
@@ -47,18 +48,20 @@ class Maze {
 
   generatePath() {
     // 7 to 15
-    let maxPathLength = Math.floor(Math.random() * 9) + 6;
+    let maxPathLength = Math.floor(Math.random() * 9) + 12;
 
-    let pathTiles = [];
 
     let activeTile = this.randomTile;
+    while (this.connectedTiles.indexOf(activeTile) != -1) {
+      activeTile = this.randomTile;
+    }
 
     for (let i = 0; i < maxPathLength; i++) {
-      pathTiles.push(activeTile);
+      this.connectedTiles.push(activeTile);
 
       let tileNeighbours = this.getNeighbours(activeTile);
 
-      for (let pathTile of pathTiles) {
+      for (let pathTile of this.connectedTiles) {
         let pathTileIndex = tileNeighbours.indexOf(pathTile);
         if (pathTileIndex != -1) tileNeighbours.splice(pathTileIndex, 1);
       }
@@ -71,6 +74,8 @@ class Maze {
 
       activeTile = tileToConnect;
     }
+
+    this.connectedTiles.push(activeTile);
 
   }
 
