@@ -1,9 +1,0 @@
-canvas {
-  background: #ddd;
-  margin: auto;
-  display: block;
-}
-
-input[type='number'] {
-  width: 3em;
-}
