@@ -63,3 +63,35 @@ class Maze {
     return neighbours;
   }
 }
+
+class UIElement {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+class SpriteUIElement extends UIElement {
+  constructor(x, y, sprite) {
+    super(x, y);
+    this.sprite = sprite;
+  }
+}
+
+class Button extends SpriteUIElement {
+  constructor(x, y, height, width, sprite, text, action) {
+    super(x, y, sprite);
+    this.height = height;
+    this.width = width;
+    this.action = action;
+  }
+}
+
+class TextUI extends UIElement {
+  constructor(x, y, text, size, style = 'none') {
+    super(x, y);
+    this.text = text;
+    this.size = size;
+    this.style = style;
+  }
+}

@@ -1,3 +1,19 @@
+function loadScene(sceneData) {
+  for (let sprite of sceneData.sprites) {
+    drawSprite(sprite.x, sprite.y, sprite.src, sprite.type);
+  }
+}
+
+function drawSprite(x, y, src, type) {
+  if (type == 'fixed-sprite') {
+    let img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, x, y);
+    };
+    img.src = `./Sprites/${src}`;
+  }
+}
+
 function getDirection(directionArr) {
   if (directionArr[0] < 0) return 'left';
   else if (directionArr[0] > 0) return 'right';
@@ -55,17 +71,9 @@ function generateMaze(height, width, maxPaths) {
 }
 
 function drawMaze(maze) {
-  let canvas = document.getElementById('gameCanvas');
-  let ctx = canvas.getContext('2d');
-
   for (let x in maze.tiles) {
     for (let y in maze.tiles[x]) {
-      let spriteNum = getTileSprite(maze.tiles[x][y]);
-      let img = new Image();
-      img.onload = () => {
-        ctx.drawImage(img, x * 30, y * 30);
-      };
-      img.src = `./Sprites/Tiles/${spriteNum}.png`;
+      drawSprite(x * 30, y * 30, `Tiles/${getTileSprite(maze.tiles[x][y])}.png`, 'fixed-sprite');
     }
   }
 }

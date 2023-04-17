@@ -7,25 +7,9 @@
 
 <body>
   <canvas id="gameCanvas" width="360" height="800"></canvas>
-  <div id="testSettings" class="centre">
-    <div id="generationInput" class="settingField">
-      <input id="mazeXInput" type="number" placeholder="w">
-      <input id="mazeYInput" type="number" placeholder="h">
-      <button onclick="generateMaze()">Generate</button>
-    </div>
-    <div id="generationType" class="settingField">
-      <div class="genTypeChoice">
-        <input id="genTypeNew" type="radio" name="genType">
-        <label for="genTypeNew">New</label>
-      </div>
-      <div class="genTypeChoice">
-        <input id="genTypeOld" type="radio" name="genType">
-        <label for="genTypeOld">Old</label>
-      </div>
-    </div>
-    <label id="errorMessage"></label>
-  </div>
+  
   <script src="./Scripts/utilFunctions.js"></script>
   <script src="./Scripts/classes.js"></script>
+  <script src="./Scripts/scenes.js"></script>
   <script src="./Scripts/game.js"></script>
 </body>
