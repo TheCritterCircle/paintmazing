@@ -1,8 +1,8 @@
-function loadScene(sceneData) {
+/* function loadScene(sceneData) {
   for (let sprite of sceneData.sprites) {
     drawSprite(sprite.x, sprite.y, sprite.src, sprite.type);
   }
-}
+} */
 
 function drawSprite(x, y, src, type) {
   if (type == 'fixed-sprite') {
